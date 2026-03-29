@@ -11,6 +11,6 @@
 .Trashes
 
 # Secrets & Configuration
-# CRITICAL: Do not ever commit your Clockify configuration 
+# CRITICAL: Do not ever commit your Clockify configuration
 # as it contains your personal API Key.
 .clockify_config

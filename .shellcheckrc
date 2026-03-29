@@ -1,0 +1,4 @@
+# .shellcheckrc
+
+# Ignore non-constant source warning since we dynamically construct paths
+disable=SC1090

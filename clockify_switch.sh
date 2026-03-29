@@ -2,9 +2,9 @@
 
 # ==============================================================================
 # clockify_switch.sh
-# 
+#
 # A DevOps-friendly script to automate Clockify context switching.
-# It automatically stops the current active timer and starts a new one based on 
+# It automatically stops the current active timer and starts a new one based on
 # a fuzzy search of your project names.
 #
 # Usage:
@@ -47,15 +47,15 @@ API_BASE="https://api.clockify.me/api/v1"
 if [ -z "$CLOCKIFY_USER_ID" ] || [ -z "$CLOCKIFY_WORKSPACE_ID" ]; then
     echo "🔍 First run setup: Fetching User and Workspace info..."
     USER_INFO=$(curl -s -H "X-Api-Key: $CLOCKIFY_API_KEY" "$API_BASE/user")
-    
+
     CLOCKIFY_USER_ID=$(echo "$USER_INFO" | jq -r '.id')
     CLOCKIFY_WORKSPACE_ID=$(echo "$USER_INFO" | jq -r '.activeWorkspace')
-    
+
     if [ "$CLOCKIFY_USER_ID" == "null" ] || [ -z "$CLOCKIFY_USER_ID" ]; then
          echo "❌ Error: Failed to fetch user info. Check if your API key is valid."
          exit 1
     fi
-    
+
     # Cache for next time to speed up the script
     echo "export CLOCKIFY_USER_ID='$CLOCKIFY_USER_ID'" >> "$CONFIG_FILE"
     echo "export CLOCKIFY_WORKSPACE_ID='$CLOCKIFY_WORKSPACE_ID'" >> "$CONFIG_FILE"
